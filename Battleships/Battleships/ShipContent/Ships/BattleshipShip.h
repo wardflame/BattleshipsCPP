@@ -1,8 +1,8 @@
 #pragma once
 #include "../Ship.h"
 
-class BattleShipShip : public Ship
+class BattleshipShip : public Ship
 {
 public:
-	BattleShipShip();
+	BattleshipShip();
 };

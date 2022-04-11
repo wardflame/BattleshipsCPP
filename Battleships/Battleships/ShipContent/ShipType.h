@@ -8,7 +8,6 @@ enum class ShipType {
 	Destroyer,
 	Battleship,
 	Carrier,
-	TargetOcean,
 	Target,
 	Shot
 };

@@ -35,7 +35,7 @@ public:
 	/// </summary>
 	/// <param name="board">Board to check.</param>
 	/// <returns>Returns true if all ships are destroyed.</returns>
-	bool allDestroyed();	
+	bool allShipsDestroyed();	
 
 private:
 	Ship* m_ships;

@@ -1,5 +1,5 @@
 #include "SubmarineShip.h"
 
-SubmarineShip::SubmarineShip() : Ship(ShipType::Submarine, "Submarine", "Sub", 3)
+SubmarineShip::SubmarineShip() : Ship(ShipType::Submarine, "Submarine", "SUB", 3)
 {
 }

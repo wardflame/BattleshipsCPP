@@ -1,5 +1,5 @@
 #include "BattleshipShip.h"
 
-BattleShipShip::BattleShipShip() : Ship(ShipType::Battleship, "Battleship", "Bat", 4)
+BattleshipShip::BattleshipShip() : Ship(ShipType::Battleship, "Battleship", "BAT", 4)
 {
 }

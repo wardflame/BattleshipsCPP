@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIContent\AI.cpp" />
     <ClCompile Include="ShipContent\Ship.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Battleships.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="ShipContent\Ships\SubmarineShip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIContent\AI.h" />
     <ClInclude Include="BoardContent\Board.h" />
     <ClInclude Include="Difficulty.h" />
     <ClInclude Include="ShipContent\Ship.h" />

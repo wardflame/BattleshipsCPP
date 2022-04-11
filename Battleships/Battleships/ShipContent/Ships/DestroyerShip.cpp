@@ -1,5 +1,5 @@
 #include "DestroyerShip.h"
 
-DestroyerShip::DestroyerShip() : Ship(ShipType::Destroyer, "Destroyer", "Des", 3)
+DestroyerShip::DestroyerShip() : Ship(ShipType::Destroyer, "Destroyer", "DES", 3)
 {
 }

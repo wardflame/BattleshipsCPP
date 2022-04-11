@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include <Windows.h>
+#include <vector>
 
 #include "BoardContent/Board.h"
 #include "Difficulty.h"

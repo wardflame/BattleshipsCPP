@@ -34,12 +34,54 @@ void Board::printBoard()
 	{
 		for (int x = -1; x < (int)BOARD_SIZE; x++)
 		{
-			/*if (x == -1 && y == -1) {
-				std::cout << "  |"
+			if (x == -1 && y == -1) {
+				std::cout << "  |";
 			}
 			else if (y == -1 && x >= 0) {
-				Utilities::setTextColour()
-			}*/
+				Utilities::setTextColour(DARK_BLUE);
+				std::cout << " " << Utilities::getLetter(x);
+				Utilities::resetTextColour();
+			}
+			else if (x == -1 && y >= 0) {
+				int line = y + 1;
+				Utilities::setTextColour(DARK_BLUE);
+				std::cout << line;
+				if (line < 10) {
+					std::cout << " ";
+				}
+				Utilities::resetTextColour();
+				std::cout << "|";
+			}
+			else {
+				Ship* ship = getShip(x, y);
+				std::string shortName = ship->getShortName();
+				if (ship->isHit()) {
+					if (ship->getType() == ShipType::Target) {
+						Utilities::setTextColour(DARK_YELLOW);
+					}
+					else {
+						Utilities::setTextColour(DARK_RED);
+					}
+				}
+				else {
+					Utilities::setTextColour(DARK_YELLOW);
+				}
+				std::cout << shortName;
+				if (shortName.size() < 3) {
+					for (size_t i = 0; i < 3 - shortName.size(); i++)
+					{
+						std::cout << " ";
+					}
+				}
+				if (x < BOARD_SIZE - 1) {
+					Utilities::setTextColour(CYAN);
+				}
+				else {
+					Utilities::resetTextColour();
+				}
+				std::cout << "|";
+				Utilities::resetTextColour();
+			}
 		}
 		std::cout << std::endl;
 	}
@@ -47,7 +89,15 @@ void Board::printBoard()
 
 bool Board::hitShip(unsigned int x, unsigned int y)
 {
-	return false;
+	Ship* ship = getShip(x, y);
+	if (ship->getType() == ShipType::Ocean) {
+		return false;
+	}
+	if (ship->isHit()) {
+		return false;
+	}
+	ship->setHit(true);
+	return true;
 }
 
 void Board::placeShip(unsigned int x, unsigned int y, Ship ship, bool horizontal)
@@ -85,13 +135,41 @@ std::vector<ShipType> Board::getShipTypes(unsigned int x, unsigned int y, unsign
 	return shipTypes;
 }
 
-bool Utilities::isOverlapping() {
+void Board::updateShipSelection(ShipType& previousShipType, unsigned int x, unsigned int y)
+{
+	previousShipType = getShip(x, y)->getType();
+	if (previousShipType == ShipType::Ocean || (previousShipType == ShipType::Shot && !getShip(x, y)->isHit())) {
+		getShip(x, y)->setType(ShipType::Target);
+	}
+}
+
+bool Board::isOverlapping() {
 	for (size_t y = 0; y < BOARD_SIZE; y++)
 	{
-		/*for (size_t x = 0; x < BOARD_SIZE; x++)
+		for (size_t x = 0; x < BOARD_SIZE; x++)
 		{
-			if (board.getShip(x, y)->isHit())
+			if (getShip(x, y)->isHit()) {
 				return true;
-		}*/
+			}
+		}
 	}
+	return false;
+}
+
+bool Board::allShipsDestroyed()
+{
+	for (size_t y = 0; y < BOARD_SIZE; y++)
+	{
+		for (size_t x = 0; x < BOARD_SIZE; x++)
+		{
+			Ship* ship = getShip(x, y);
+			if (ship->getType() == ShipType::Ocean || ship->getType() == ShipType::Target) {
+				continue;
+			}
+			if (!getShip(x, y)->isHit()) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
