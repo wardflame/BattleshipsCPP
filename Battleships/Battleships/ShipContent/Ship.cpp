@@ -1,11 +1,11 @@
 #include "Ship.h"
 
 Ship::Ship(ShipType shipType, std::string fullName, std::string shortName, unsigned int shipLength)
-	: m_shipType(shipType), m_fullName(fullName), m_shortName(shortName), m_shipLength(shipLength) {
+	: m_shipType(shipType), m_fullName(fullName), m_shortName(shortName), m_shipLength(shipLength), m_hit(false) {
 
 }
 
-Ship::Ship() : m_shipType(ShipType::Ocean), m_fullName("Ocean"), m_shortName(" . "), m_shipLength(0) {
+Ship::Ship() : Ship(ShipType::Ocean, "Ocean", " . ", 0) {
 
 }
 
