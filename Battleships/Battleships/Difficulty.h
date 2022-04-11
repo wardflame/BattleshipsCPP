@@ -8,4 +8,4 @@ enum class Difficulty {
 };
 
 // String version of difficulty level.
-static const char* difficulty_str[] = { "Cadet", "Commodore", "Admiral" };
+static const char* difficulty_string[] = { "Cadet", "Commodore", "Admiral" };

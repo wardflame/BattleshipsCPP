@@ -40,37 +40,49 @@
 
 class Utilities {
 public:
-	// Assign handle.
-	static void init();
+	/// <summary>
+	/// Init handle for changeing text colours.
+	/// </summary>
+	static void initialiseHandle();
 
-	// Set foreground colour.
-	static void setForeground(int foreground);
-	// Reset foreground colour.
-	static void resetColour();
+	/// <summary>
+	/// Set the console's foreground colour.
+	/// </summary>
+	/// <param name="foreground">int correlating to foreground number definition.</param>
+	static void setTextColour(WORD wAttribute);
 
-	// Get player input.
+	/// <summary>
+	/// Reset console's foreground colour.
+	/// </summary>
+	static void resetTextColour();
+
+	/// <summary>
+	/// Get the player's input and return the character int.
+	/// </summary>
+	/// <returns>int relating to character key.</returns>
 	static int getInput();
 
-	// Difficulty
+	/// <summary>
+	/// Access game's difficulty setting.
+	/// </summary>
+	/// <returns>Returns current difficulty.</returns>
 	static Difficulty getDifficulty();
+
+	/// <summary>
+	/// Set the game's difficulty.
+	/// </summary>
+	/// <param name="difficulty">Difficulty to be set.</param>
 	static void setDifficulty(Difficulty difficulty);
 
-	/*
-	static void setShipType(Board& board, unsigned int x, unsigned int y, ShipType shipType, unsigned int shipSize, bool horizontal);
-	static void setShipType(Board& board, unsigned int x, unsigned int y, std::vector<ShipType> shipTypes, bool horizontal);
+	/// <summary>
+	/// Get a letter by an index value from a vector.
+	/// </summary>
+	/// <param name="letter">Letter index in vector.</param>
+	/// <returns>Returns string letter from vector at index.</returns>
+	static std::string getLetter(unsigned int index);
 
-	static std::vector<ShipType> getShipTypes(Board& board, unsigned int x, unsigned int y, unsigned int shipSize, bool horizontal);
-
-	static void updateShipSelection(Board& board, ShipType& previousShipType, unsigned int x, unsigned int y);
-
-	// Check if any ships are overlaying
-	static bool anyOverlay(Board& board);
-
-	// Check if all ships on a board have been destroyed
-	static bool allDestroyed(Board& board);
-
-	static int randomInt(int minValue, int maxValue);*/
 private:
 	static HANDLE hConsole;
 	static Difficulty m_difficulty;
+	static std::vector<std::string> m_letterNumber;
 };
