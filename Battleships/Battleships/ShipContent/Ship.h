@@ -4,12 +4,17 @@
 
 class Ship {
 public:
-	Ship(ShipType shipType);
+	Ship(ShipType shipType, std::string fullName, std::string shortName, unsigned int shipLength);
 	Ship();
 
-	// Get short string version of ships.
-	std::string getStrShort();
+	// Get full/short name of ship.
+	std::string getFullName();
+	std::string getShortName();
 
+	// Get ship length.
+	unsigned int getLength();
+
+	// See, or set, whether a ship is hit.
 	bool isHit();
 	void setHit(bool value);
 
@@ -18,23 +23,8 @@ public:
 
 private:
 	ShipType m_shipType;
-	int m_shipLength;
+	std::string m_fullName;
+	std::string m_shortName;
+	unsigned int m_shipLength;
 	bool m_hit;
 };
-
-bool Ship::isHit() {
-	return m_hit;
-}
-
-void Ship::setHit(bool value) {
-	m_hit = value;
-}
-
-ShipType Ship::getType()
-{
-	return m_shipType;
-}
-
-void Ship::setType(ShipType shipType) {
-	m_shipType = shipType;
-}

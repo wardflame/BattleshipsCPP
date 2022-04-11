@@ -1,10 +1,14 @@
 #pragma once
+#include <vector>
+#include <Windows.h>
+
+#include "BoardContent/Board.h"
 #include "Difficulty.h"
 
 #pragma region INPUT_DEFINES
 
-#define KEY_ESCAPE = 27
-#define KEY_ENTER = 13
+#define KEY_ESCAPE 27
+#define KEY_ENTER 13
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -34,8 +38,7 @@
 
 #pragma endregion
 
-class Utilities
-{
+class Utilities {
 public:
 	// Assign handle.
 	static void init();
@@ -52,6 +55,7 @@ public:
 	static Difficulty getDifficulty();
 	static void setDifficulty(Difficulty difficulty);
 
+	/*
 	static void setShipType(Board& board, unsigned int x, unsigned int y, ShipType shipType, unsigned int shipSize, bool horizontal);
 	static void setShipType(Board& board, unsigned int x, unsigned int y, std::vector<ShipType> shipTypes, bool horizontal);
 
@@ -65,5 +69,8 @@ public:
 	// Check if all ships on a board have been destroyed
 	static bool allDestroyed(Board& board);
 
-	static int randomInt(int minValue, int maxValue);
+	static int randomInt(int minValue, int maxValue);*/
+private:
+	static HANDLE hConsole;
+	static Difficulty m_difficulty;
 };

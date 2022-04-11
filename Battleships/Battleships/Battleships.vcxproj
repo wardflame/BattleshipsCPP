@@ -139,14 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ShipContent\Ship.cpp" />
+    <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Battleships.cpp" />
+    <ClCompile Include="BoardContent\Board.cpp" />
+    <ClCompile Include="ShipContent\Ships\BattleshipShip.cpp" />
+    <ClCompile Include="ShipContent\Ships\CarrierShip.cpp" />
     <ClCompile Include="ShipContent\Ships\DestroyerShip.cpp" />
+    <ClCompile Include="ShipContent\Ships\PatrolShip.cpp" />
+    <ClCompile Include="ShipContent\Ships\SubmarineShip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoardContent\Board.h" />
     <ClInclude Include="Difficulty.h" />
     <ClInclude Include="ShipContent\Ship.h" />
+    <ClInclude Include="ShipContent\Ships\BattleshipShip.h" />
+    <ClInclude Include="ShipContent\Ships\CarrierShip.h" />
     <ClInclude Include="ShipContent\Ships\DestroyerShip.h" />
+    <ClInclude Include="ShipContent\Ships\PatrolShip.h" />
+    <ClInclude Include="ShipContent\Ships\SubmarineShip.h" />
     <ClInclude Include="ShipContent\ShipType.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
