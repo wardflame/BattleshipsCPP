@@ -179,13 +179,12 @@ int main()
                     }
                 } break;
                 case KEY_ENTER: {
-                    if (targetBoard.getShip(x, y)->getType() != ShipType::Shot) {
+                    if (previousShip->getType() != ShipType::Shot) {
                         aiBoard.hitShip(x, y);
                         targetBoard.getShip(x, y)->setHit(aiBoard.getShip(x, y)->getType() != ShipType::Ocean);
                         targetBoard.getShip(x, y)->setType(ShipType::Shot);
                         targetBoard.getShip(x, y)->setShortName(" X ");
                         previousShip = new Ship(*targetBoard.getShip(x, y));
-                        //targetBoard.updateShipSelection(*previousShip, x, y);
                         adversary.playTurn();
                         if (aiBoard.allShipsDestroyed() || playerBoard.allShipsDestroyed()) {
                             battling = false;
@@ -196,6 +195,9 @@ int main()
                 }
                 system("cls");
             }
+        }
+        else {
+            break;
         }
     }
     return 0;

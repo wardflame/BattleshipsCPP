@@ -111,7 +111,7 @@ void Board::placeShip(unsigned int x, unsigned int y, Ship ship, bool horizontal
 	for (size_t i = 0; i < ship.getLength(); i++)
 	{
 		Ship* targetShip = getShip(x + (horizontal ? i : 0), y + (horizontal ? 0 : i));
-		if ((targetShip->getType() != ship.getType() && targetShip->getType() != ShipType::Ocean && targetShip->getType() != ShipType::Target) || (targetShip->getType() == ShipType::Shot && targetShip->isHit())) {
+		if ((targetShip->getType() != ship.getType() && targetShip->getType() != ShipType::Ocean && targetShip->getType() != ShipType::Target) || ((targetShip->getType() == ShipType::Shot || targetShip->getType() == ShipType::Target) && targetShip->isHit())) {
 			targetShip->setHit(true);
 		}
 		else {
