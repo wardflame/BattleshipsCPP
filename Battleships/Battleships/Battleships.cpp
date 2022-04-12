@@ -189,6 +189,16 @@ int main()
                         if (aiBoard.allShipsDestroyed() || playerBoard.allShipsDestroyed()) {
                             battling = false;
                             playerVictory = aiBoard.allShipsDestroyed();
+                            if (playerVictory) {
+                                Utilities::setTextColour(GREEN);
+                                std::cout << "VICTORY FOR THE " << difficulty_string[(int)Utilities::getDifficulty()] << "!" << std::endl;
+                                Utilities::resetTextColour();
+                            }
+                            else {
+                                Utilities::setTextColour(RED);
+                                std::cout << "DEFEAT!" << std::endl;
+                                Utilities::resetTextColour();
+                            }
                         }
                     }
                 } break;
