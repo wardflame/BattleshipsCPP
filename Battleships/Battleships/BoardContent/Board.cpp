@@ -38,13 +38,14 @@ void Board::printBoard()
 				std::cout << "  |";
 			}
 			else if (y == -1 && x >= 0) {
-				Utilities::setTextColour(DARK_BLUE);
+				Utilities::setTextColour(BLUE);
 				std::cout << " " << Utilities::getLetter(x);
 				Utilities::resetTextColour();
+				std::cout << " |";
 			}
 			else if (x == -1 && y >= 0) {
 				int line = y + 1;
-				Utilities::setTextColour(DARK_BLUE);
+				Utilities::setTextColour(BLUE);
 				std::cout << line;
 				if (line < 10) {
 					std::cout << " ";
@@ -64,7 +65,12 @@ void Board::printBoard()
 					}
 				}
 				else {
-					Utilities::setTextColour(DARK_YELLOW);
+					if (ship->getType() != ShipType::Ocean) {
+						Utilities::resetTextColour();
+					}
+					else {
+						Utilities::setTextColour(CYAN);
+					}
 				}
 				std::cout << shortName;
 				if (shortName.size() < 3) {
@@ -105,42 +111,43 @@ void Board::placeShip(unsigned int x, unsigned int y, Ship ship, bool horizontal
 	for (size_t i = 0; i < ship.getLength(); i++)
 	{
 		Ship* targetShip = getShip(x + (horizontal ? i : 0), y + (horizontal ? 0 : i));
-		if (targetShip->getType() != ship.getType() && targetShip->getType() != ShipType::Ocean) {
+		if (targetShip->getType() != ship.getType() && targetShip->getType() != ShipType::Ocean && targetShip->getType() != ShipType::Target) {
 			targetShip->setHit(true);
 		}
 		else {
 			targetShip->setHit(false);
 		}
 		targetShip->setType(ship.getType());
+		targetShip->setShortName(ship.getShortName());
 	}
 }
 
-void Board::placeShips(unsigned int x, unsigned int y, std::vector<ShipType> shipTypes, bool horizontal)
+void Board::placeShips(unsigned int x, unsigned int y, std::vector<Ship> shipTypes, bool horizontal)
 {
 	for (size_t i = 0; i < shipTypes.size(); i++)
 	{
 		Ship* ship = getShip(x + (horizontal ? i : 0), y + (horizontal ? 0 : i));
 		ship->setHit(false);
-		ship->setType(shipTypes.at(i));
+		ship->setType(shipTypes.at(i).getType());
+		ship->setShortName(shipTypes[i].getShortName());
 	}
 }
 
-std::vector<ShipType> Board::getShipTypes(unsigned int x, unsigned int y, unsigned int shipLength, bool horizontal)
+std::vector<Ship> Board::getShipTypes(unsigned int x, unsigned int y, unsigned int shipLength, bool horizontal)
 {
-	std::vector<ShipType> shipTypes;
+	std::vector<Ship> shipTypes;
 	for (size_t i = 0; i < shipLength; i++)
 	{
-		shipTypes.push_back(getShip(x + (horizontal ? i : 0), y + (horizontal ? 0 : i))->getType());
+		shipTypes.push_back(*getShip(x + (horizontal ? i : 0), y + (horizontal ? 0 : i)));
 	}
 	return shipTypes;
 }
 
-void Board::updateShipSelection(ShipType& previousShipType, unsigned int x, unsigned int y)
+void Board::updateShipSelection(Ship& previousShipType, unsigned int x, unsigned int y)
 {
-	previousShipType = getShip(x, y)->getType();
-	if (previousShipType == ShipType::Ocean || (previousShipType == ShipType::Shot && !getShip(x, y)->isHit())) {
-		getShip(x, y)->setType(ShipType::Target);
-	}
+	previousShipType = *getShip(x, y);
+	getShip(x, y)->setType(ShipType::Target);
+	getShip(x, y)->setShortName(" + ");
 }
 
 bool Board::isOverlapping() {

@@ -14,4 +14,5 @@ private:
 	Board& m_aiBoard, m_playerBoard;
 	std::vector<unsigned int> playerCoords;
 	std::vector<unsigned int> emptyCoords;
+	unsigned int m_noHit;
 };

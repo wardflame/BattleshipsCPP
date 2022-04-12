@@ -18,11 +18,11 @@ public:
 	bool hitShip(unsigned int x, unsigned int y);
 
 	void placeShip(unsigned int x, unsigned int y, Ship ship, bool horizontal);
-	void placeShips(unsigned int x, unsigned int y, std::vector<ShipType> shipTypes, bool horizontal);
+	void placeShips(unsigned int x, unsigned int y, std::vector<Ship> shipTypes, bool horizontal);
 
-	std::vector<ShipType> getShipTypes(unsigned int x, unsigned int y, unsigned int shipLength, bool horizontal);
+	std::vector<Ship> getShipTypes(unsigned int x, unsigned int y, unsigned int shipLength, bool horizontal);
 
-	void updateShipSelection(ShipType& previousShipType, unsigned int x, unsigned int y);
+	void updateShipSelection(Ship& previousShipType, unsigned int x, unsigned int y);
 
 	/// <summary>
 	/// Check to see if ships are present at the same coordinates.

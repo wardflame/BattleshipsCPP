@@ -5,7 +5,7 @@ Ship::Ship(ShipType shipType, std::string fullName, std::string shortName, unsig
 
 }
 
-Ship::Ship() : Ship(ShipType::Ocean, "Ocean", " . ", 0) {
+Ship::Ship() : Ship(ShipType::Ocean, "Ocean", " . ", 1) {
 
 }
 
@@ -17,8 +17,18 @@ std::string Ship::getShortName() {
 	return m_shortName;
 }
 
+void Ship::setShortName(std::string shortName)
+{
+	m_shortName = shortName;
+}
+
 unsigned int Ship::getLength() {
 	return m_shipLength;
+}
+
+void Ship::setLength(unsigned int length)
+{
+	m_shipLength = length;
 }
 
 bool Ship::isHit() {

@@ -7,12 +7,14 @@ public:
 	Ship(ShipType shipType, std::string fullName, std::string shortName, unsigned int shipLength);
 	Ship();
 
-	// Get full/short name of ship.
+	// Get/set full/short name of ship.
 	std::string getFullName();
 	std::string getShortName();
+	void setShortName(std::string shortName);
 
 	// Get ship length.
 	unsigned int getLength();
+	void setLength(unsigned int length);
 
 	// See, or set, whether a ship is hit.
 	bool isHit();
