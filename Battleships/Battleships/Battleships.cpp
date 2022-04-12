@@ -36,7 +36,7 @@ int main()
         // Play game.
         if (option == 0) {
             // Choose difficulty.
-            int difficulty = navigateMenu("Choose difficulty : ", difficultyMenu);
+            int difficulty = navigateMenu("Choose difficulty: ", difficultyMenu);
             Utilities::setDifficulty((Difficulty)difficulty);
 
             // Init boards.
@@ -142,7 +142,7 @@ int main()
                 std::cout << "Adversary Board" << std::endl;
                 targetBoard.printBoard();
                 std::cout << "Player Board" << std::endl;
-                aiBoard.printBoard();
+                playerBoard.printBoard();
 
                 std::cout << "Aim Target: Arrow Keys" << std::endl;
                 std::cout << "Fire Shot: Enter Key" << std::endl;
@@ -184,7 +184,8 @@ int main()
                         targetBoard.getShip(x, y)->setHit(aiBoard.getShip(x, y)->getType() != ShipType::Ocean);
                         targetBoard.getShip(x, y)->setType(ShipType::Shot);
                         targetBoard.getShip(x, y)->setShortName(" X ");
-                        targetBoard.updateShipSelection(*previousShip, x, y);
+                        previousShip = new Ship(*targetBoard.getShip(x, y));
+                        //targetBoard.updateShipSelection(*previousShip, x, y);
                         adversary.playTurn();
                         if (aiBoard.allShipsDestroyed() || playerBoard.allShipsDestroyed()) {
                             battling = false;

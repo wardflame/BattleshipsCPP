@@ -30,9 +30,9 @@ Ship* Board::getShip(unsigned int x, unsigned int y)
 
 void Board::printBoard()
 {
-	for (int y = -1; y < (int)BOARD_SIZE; y++)
+	for (int y = -1; y < BOARD_SIZE; y++)
 	{
-		for (int x = -1; x < (int)BOARD_SIZE; x++)
+		for (int x = -1; x < BOARD_SIZE; x++)
 		{
 			if (x == -1 && y == -1) {
 				std::cout << "  |";
@@ -111,7 +111,7 @@ void Board::placeShip(unsigned int x, unsigned int y, Ship ship, bool horizontal
 	for (size_t i = 0; i < ship.getLength(); i++)
 	{
 		Ship* targetShip = getShip(x + (horizontal ? i : 0), y + (horizontal ? 0 : i));
-		if (targetShip->getType() != ship.getType() && targetShip->getType() != ShipType::Ocean && targetShip->getType() != ShipType::Target) {
+		if ((targetShip->getType() != ship.getType() && targetShip->getType() != ShipType::Ocean && targetShip->getType() != ShipType::Target) || (targetShip->getType() == ShipType::Shot && targetShip->isHit())) {
 			targetShip->setHit(true);
 		}
 		else {
@@ -145,7 +145,7 @@ std::vector<Ship> Board::getShipTypes(unsigned int x, unsigned int y, unsigned i
 
 void Board::updateShipSelection(Ship& previousShipType, unsigned int x, unsigned int y)
 {
-	previousShipType = *getShip(x, y);
+	previousShipType = Ship(*getShip(x, y));
 	getShip(x, y)->setType(ShipType::Target);
 	getShip(x, y)->setShortName(" + ");
 }
